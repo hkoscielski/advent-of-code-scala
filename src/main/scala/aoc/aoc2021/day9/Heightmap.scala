@@ -1,5 +1,7 @@
 package aoc.aoc2021.day9
 
+import scala.annotation.tailrec
+
 case class Heightmap(grid: List[List[Int]]) {
   private[this] val rows = grid.length
   private[this] val columns = {
@@ -9,13 +11,33 @@ case class Heightmap(grid: List[List[Int]]) {
   }
 
   case class Position(row: Int, column: Int)
+  case class Location(position: Position, height: Int)
+  type Basin = Set[Location]
 
-  def lowPoints: List[Int] = {
+  def basins: List[Basin] = {
+    @tailrec
+    def findBasin(visitedPositions: Set[Position], locationsToVisit: List[Location], acc: Set[Location]): Basin = {
+      locationsToVisit match {
+        case Nil => acc
+        case h :: t =>
+          val positions = neighbourPositions(h.position)
+          val nextBasinLocations = positions
+            .map(p => Location(p, grid(p.row)(p.column)))
+            .filter(l => !visitedPositions(l.position) && l.height != 9)
+          findBasin(visitedPositions + h.position, t ::: nextBasinLocations, acc ++ nextBasinLocations)
+      }
+    }
+
+    lowPoints.map(lp => findBasin(Set.empty, lp :: Nil, Set(lp)))
+  }
+
+  def lowPoints: List[Location] = {
     for {
       i <- List.range(0, rows)
       j <- List.range(0, columns)
-      if isLowPoint(Position(i, j))
-    } yield grid(i)(j)
+      position = Position(i, j)
+      if isLowPoint(position)
+    } yield Location(position, grid(i)(j))
   }
 
   private[this] def isLowPoint(position: Position): Boolean = {

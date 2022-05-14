@@ -13,5 +13,13 @@ object SyntaxScoring extends AocApp {
     println(sum)
   }
 
+  private def partTwo(): Unit = {
+    val completionStrings: List[String] = input.flatMap(NavigationSubsystemAnalyzer.getCompletionString)
+    val totalScores = completionStrings.map(cs => cs.foldLeft(0L)((acc, c) => acc * 5 + NavigationSubsystemAnalyzer.pointsByChar(c))).sorted
+    val middle = totalScores(totalScores.size / 2)
+    println(middle)
+  }
+
   partOne()
+  partTwo()
 }

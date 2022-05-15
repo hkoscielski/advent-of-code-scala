@@ -2,16 +2,15 @@ package aoc.aoc2021.day8
 
 import aoc.common.AocApp
 
-object SevenSegmentSearch extends AocApp {
+object SevenSegmentSearch extends AocApp(2021, 8) {
   override type RT = List[Entry]
-  override def filePath: String = "src/main/scala/aoc/aoc2021/day8/input.txt"
   override def produceInput(iterator: Iterator[String]): List[Entry] = iterator.map(DigitParser.parseLine).toList
 
-  private def partOne(): Unit = {
+  override def partOne(): Unit = {
     println(input.flatMap(_.displayedDigits).count(_.hasUniqueNumOfSegments))
   }
 
-  private def partTwo(): Unit = {
+  override def partTwo(): Unit = {
     val sum = input.map { e =>
       val mapping = DigitFactory.produceDigitMapping(e.signals)
       val outputDigits = e.displayedDigits.map(mapping)
@@ -19,7 +18,4 @@ object SevenSegmentSearch extends AocApp {
     }.sum
     println(sum)
   }
-
-  partOne()
-  partTwo()
 }

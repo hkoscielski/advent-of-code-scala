@@ -4,11 +4,15 @@ import aoc.common.util.FileUtils._
 
 import scala.util.{Failure, Success, Try}
 
-abstract class AocApp extends App {
-
+abstract class AocApp(year: Int, day: Int) extends App {
   type RT
-  def filePath: String
+  def testModeEnabled: Boolean = false
   def produceInput(iterator: Iterator[String]): RT
+  def partOne(): Unit
+  def partTwo(): Unit
+
+  private val fileName: String = if (testModeEnabled) "test-" else "" + "input.txt"
+  private def filePath: String = s"src/main/scala/aoc/aoc$year/day$day/$fileName"
 
   final val input: RT = open(filePath) { s =>
     Try(s.getLines()) match {
@@ -16,4 +20,7 @@ abstract class AocApp extends App {
       case Success(value) => produceInput(value)
     }
   }.get
+
+  partOne()
+  partTwo()
 }

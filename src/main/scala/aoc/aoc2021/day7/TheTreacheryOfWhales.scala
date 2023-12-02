@@ -1,8 +1,8 @@
 package aoc.aoc2021.day7
 
-import aoc.common.AocApp
+import aoc.common.OldAocApp
 
-object TheTreacheryOfWhales extends AocApp(2021, 7) {
+object TheTreacheryOfWhales extends OldAocApp(2021, 7) {
   override type RT = List[Int]
   override def produceInput(iterator: Iterator[String]): RT = iterator.flatMap(PositionParser.parseLine).toList
 

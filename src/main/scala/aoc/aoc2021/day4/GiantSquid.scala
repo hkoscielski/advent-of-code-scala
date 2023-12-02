@@ -1,8 +1,8 @@
 package aoc.aoc2021.day4
 
-import aoc.common.AocApp
+import aoc.common.OldAocApp
 
-object GiantSquid extends AocApp(2021, 4) {
+object GiantSquid extends OldAocApp(2021, 4) {
   override type RT = (List[Int], List[Board])
   override def produceInput(iterator: Iterator[String]): (List[Int], List[Board]) = BingoParser.parseLines(iterator.toList)
 

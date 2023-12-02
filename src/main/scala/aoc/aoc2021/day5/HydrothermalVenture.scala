@@ -1,8 +1,8 @@
 package aoc.aoc2021.day5
 
-import aoc.common.AocApp
+import aoc.common.OldAocApp
 
-object HydrothermalVenture extends AocApp(2021, 5) {
+object HydrothermalVenture extends OldAocApp(2021, 5) {
   override type RT = List[Line]
   override def produceInput(iterator: Iterator[String]): RT = iterator.map(LineParser.parseLine).toList
 

@@ -1,8 +1,8 @@
 package aoc.aoc2021.day6
 
-import aoc.common.AocApp
+import aoc.common.OldAocApp
 
-object Lanternfish extends AocApp(2021, 6) {
+object Lanternfish extends OldAocApp(2021, 6) {
   override type RT = List[Long]
   override def produceInput(iterator: Iterator[String]): RT = iterator.flatMap(LanternfishParser.parseLine).toList
 

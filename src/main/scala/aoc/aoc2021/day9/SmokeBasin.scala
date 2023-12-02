@@ -1,8 +1,8 @@
 package aoc.aoc2021.day9
 
-import aoc.common.AocApp
+import aoc.common.OldAocApp
 
-object SmokeBasin extends AocApp(2021, 9) {
+object SmokeBasin extends OldAocApp(2021, 9) {
   override type RT = Heightmap
   override def produceInput(iterator: Iterator[String]): Heightmap = Heightmap(iterator.map(HeightmapParser.parseLine).toList)
 

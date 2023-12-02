@@ -1,8 +1,8 @@
 package aoc.aoc2021.day8
 
-import aoc.common.AocApp
+import aoc.common.OldAocApp
 
-object SevenSegmentSearch extends AocApp(2021, 8) {
+object SevenSegmentSearch extends OldAocApp(2021, 8) {
   override type RT = List[Entry]
   override def produceInput(iterator: Iterator[String]): List[Entry] = iterator.map(DigitParser.parseLine).toList
 

@@ -1,8 +1,8 @@
 package aoc.aoc2021.day10
 
-import aoc.common.AocApp
+import aoc.common.OldAocApp
 
-object SyntaxScoring extends AocApp(2021, 10) {
+object SyntaxScoring extends OldAocApp(2021, 10) {
   override type RT = List[String]
   override def produceInput(iterator: Iterator[String]): List[String] = iterator.toList
 

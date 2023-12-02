@@ -6,3 +6,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "advent-of-code-scala"
   )
+
+libraryDependencies ++= Seq(
+  "com.beachape" %% "enumeratum" % "1.7.3"
+)

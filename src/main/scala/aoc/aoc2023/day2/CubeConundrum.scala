@@ -15,4 +15,14 @@ object CubeConundrum extends AocApp(2023, 2) {
       Some(filteredGameIds.sum)
     }
   }
+
+  override def part2: Puzzle[List[Game]] = new Puzzle[List[Game]] {
+    override type OUT = Long
+
+    override def solve(input: List[Game]): Option[Long] = {
+      val maxes = input.map(_.bagStates.fold(BagState.empty)((max, state) => max.applyMax(state)))
+      val powers = maxes.map(_.power)
+      Some(powers.sum)
+    }
+  }
 }
